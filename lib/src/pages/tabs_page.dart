@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/src/pages/tab1_page.dart';
+import 'package:news_app/src/pages/tab2_page.dart';
 import 'package:provider/provider.dart';
 
 class Tabspage extends StatelessWidget {
@@ -20,10 +22,12 @@ class _Navegacion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //simula un singleton
+    //solo cuando se le llam de esta manera el provider escucha que decierta forma haria el rebuild para actualizar el estado
     final navegacionModel = Provider.of<_NavegacionModel>(context);
-    print('muestra la navegacionModel');
-    print(navegacionModel._paginaActual);
-    return BottomNavigationBar(
+   
+    // print('muestra la navegacionModel');
+    // print(navegacionModel._paginaActual);
+     return BottomNavigationBar(
       currentIndex: navegacionModel.paginaActual ,
       onTap: (i) => navegacionModel.paginaActual = i ,
       items: [
@@ -46,12 +50,8 @@ class _Paginas extends StatelessWidget {
      // physics: BouncingScrollPhysics(),
       physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        Container(
-          color: Colors.red,
-        ),
-        Container(
-          color: Colors.green,
-        )
+        TabHeadLine(),
+        Tab2page()
       ],
     );
   }
